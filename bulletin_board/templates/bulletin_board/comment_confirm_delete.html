@@ -1,0 +1,17 @@
+{% extends 'bulletin_board/base.html' %}
+
+{% block title %}
+    Подтвердите удаление {{ comment.pk }}
+{% endblock %}
+
+{% block body %}
+    <h1>Вы уверены, что хотите удалить отклик?</h1>
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Уверен</button>
+        </form>
+    </div>
+    <p><a href="{% url 'bulletin_board:comment_list' %}">Назад к откликам</a></p>
+{% endblock %}

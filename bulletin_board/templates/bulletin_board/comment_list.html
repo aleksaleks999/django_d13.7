@@ -1,0 +1,34 @@
+{% extends 'bulletin_board/base.html' %}
+
+{% block title %}
+    Отклики на мои объявления
+{% endblock %}
+
+{% block body %}
+    <h1>Отклики на мои объявления</h1>
+    <div>
+        <ul>
+            {% for announcement in announcements %}
+                <li>
+                    <div>
+                        <a href="{% url 'bulletin_board:announcement_detail' pk=announcement.pk %}">
+                            <p>{{ announcement.title }}</p>
+                        </a>
+                         <ol>
+                             {% for comment in announcement.comment_set.all %}
+                                <li class="{% if comment.accepted %}green{% endif %}">
+                                    <p>{{ comment.text }}</p>
+                                    {% if not comment.accepted %}
+                                        <a href="{% url 'bulletin_board:comment_accept' pk=comment.pk %}">Принять</a>
+                                        <a href="{% url 'bulletin_board:comment_delete' pk=comment.pk %}">Удалить</a>
+                                    {% endif %}
+                                </li>
+                             {% endfor %}
+                         </ol>
+                    </div>
+                </li>
+            {% empty %} Пока нет откликов
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "accounts/base.html" %}
+
+{% block title %}
+    Ошибка регистрации
+{% endblock %}
+
+{% block body %}
+    <h1>Ошибка регистрация</h1>
+    <div>
+        <ol>
+            {% for key, value in activation_error.items() %}
+            <li>
+                {{ key }}: {{ value }}
+            </li>
+            {% endfor %}
+        </ol>
+    </div>
+{% endblock %}

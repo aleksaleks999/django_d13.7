@@ -1,0 +1,11 @@
+{% extends "accounts/base.html" %}
+
+{% block title %}
+    Успешная Регистрация
+{% endblock %}
+
+{% block body %}
+    <h1>Успешная Регистрация</h1>
+    <h2>Вы успешно зарегистрировались, вам выслано письмо с кодом подтверждения</h2>
+    <h3><a href="{% url 'bulletin_board:announcement_list' %}">К списку объявлений</a></h3>
+{% endblock %}

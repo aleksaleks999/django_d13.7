@@ -1,0 +1,29 @@
+{% extends 'bulletin_board/base.html' %}
+
+{% block title %}
+    Доска Объявлений
+{% endblock %}
+
+{% block body %}
+    <h1>Доска Объявлений</h1>
+    <div>
+        <ol>
+            {% for announcement in announcements %}
+                <li>
+                    <div>
+                        <a href="{% url 'bulletin_board:announcement_detail' pk=announcement.pk %}">
+                            <p>{{ announcement.title }}</p>
+                        </a>
+                        <p>{{ announcement.category }}</p>
+                        <p>{{ announcement.text }}</p>
+                    </div>
+                </li>
+            {% empty %} Пока нет объявлений
+            {% endfor %}
+        </ol>
+    </div>
+
+    <div>
+        <a href="{% url 'bulletin_board:announcement_create' %}">Создать объявление</a>
+    </div>
+{% endblock %}

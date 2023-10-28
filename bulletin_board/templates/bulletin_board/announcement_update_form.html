@@ -1,0 +1,21 @@
+{% extends 'bulletin_board/base.html' %}
+
+{% block title %}
+    Изменить объявление
+{% endblock %}
+
+{% block body %}
+    <h1>Изменить объявление</h1>
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Изменить</button>
+        </form>
+    </div>
+    <div>
+        <br>
+        <a href="{% url 'bulletin_board:announcement_list' %}">Назад к объявлению #{{ object.pk }}</a>
+        <a href="{% url 'bulletin_board:announcement_detail' pk=object.pk %}">Back to product #{{ object.pk }}</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'bulletin_board/base.html' %}
+
+{% block title %}
+    Создать объявление
+{% endblock %}
+
+{% block body %}
+    <h1>Создать объявление</h1>
+    <div>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Создать</button>
+        </form>
+    </div>
+    <div>
+        <br>
+        <a href="{% url 'bulletin_board:announcement_list' %}">Назад к списку объявлений</a>
+    </div>
+{% endblock %}

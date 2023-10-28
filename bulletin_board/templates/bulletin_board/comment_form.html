@@ -1,0 +1,32 @@
+{% extends 'bulletin_board/base.html' %}
+
+{% block title %}
+    Создать отклик
+{% endblock %}
+
+{% block body %}
+    <h1>Создать отклик</h1>
+    <h2>{{ object.announcement.title }}</h2>
+    <div>
+        <p>{{ object.announcement.text }}</p>
+
+        {% if object.announcement.files %}
+            <p>
+                {% for file in announcement.files %}
+                    <img src="{{ file.url }}"/>
+                {% endfor %}
+            </p>
+        {% endif %}
+    </div>
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Создать</button>
+        </form>
+    </div>
+    <div>
+        <br>
+        <a href="{% url 'bulletin_board:announcement_list' %}">Назад к списку объявлений</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "accounts/base.html" %}
+
+{% block title %}
+    Успешное подтверждение
+{% endblock %}
+
+{% block body %}
+    <h1>Успешное подтверждение email</h1>
+    <h3><a href="{% url 'bulletin_board:announcement_list' %}">К списку объявлений</a></h3>
+{% endblock %}

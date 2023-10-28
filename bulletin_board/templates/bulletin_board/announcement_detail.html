@@ -1,0 +1,36 @@
+{% extends 'bulletin_board/base.html' %}
+
+{% block title %}
+    Объявление {{ announcement.title }}
+{% endblock %}
+
+{% block body %}
+    <h1><strong>{{ announcement.title }}</strong></h1>
+    <h2>{{ announcement.category.title }}</h2>
+    <div>
+        <p>{{ announcement.text }}</p>
+
+        {% if announcement.announcementmedia_set %}
+            <div>
+                {% for media in announcement.announcementmedia_set.all %}
+                    <input type="button" value="Cкачать файл {{ media.pk }}" onclick="window.open('{{ media.media.url }}')">
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    {% if announcement.user.pk == user.pk %}
+    <div>
+        <a href="{% url 'bulletin_board:announcement_update' announcement.id %}">Изменить объявление</a>
+        <a href="{% url 'bulletin_board:announcement_delete' announcement.id %}">Удалить объявление</a>
+    </div>
+    {% else %}
+    <div>
+        <a href="{% url 'bulletin_board:comment_create' announcement.id %}">Откликнуться</a>
+    </div>
+    {% endif %}
+
+    <div>
+        <a href="{% url 'bulletin_board:announcement_list' %}">Назад к списку объявлений</a>
+    </div>
+{% endblock %}

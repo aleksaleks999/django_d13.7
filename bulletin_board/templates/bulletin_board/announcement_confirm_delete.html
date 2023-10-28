@@ -1,0 +1,17 @@
+{% extends 'bulletin_board/base.html' %}
+
+{% block title %}
+    Подтвердите удаление {{ announcement.pk }}
+{% endblock %}
+
+{% block body %}
+    <h1>Вы уверены, что хотите удалить объявление?</h1>
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Уверен</button>
+        </form>
+    </div>
+    <p><a href="{% url 'bulletin_board:announcement_detail' pk=announcement.pk %}">Назад к объявлению</a></p>
+{% endblock %}
